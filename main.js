@@ -21,7 +21,7 @@ async function run() {
     const env = new Env();
     let hook =env.get("LARK_WEBHOOK")
     fetch(hook,
-         requestOptions)
+        reqOption)
          .then((response) => response.text())   
          .then((result) => console.log(result))   
          .catch((error) => console.error(error));
