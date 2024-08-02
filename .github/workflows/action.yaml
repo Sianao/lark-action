@@ -1,0 +1,19 @@
+name: build 
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Integration failure notifications
+        uses: https://github.com/sianao/lark-action@d6c852bbaa622d6a06de192e6b4b3393e2579d8f
+        with:
+          state: "hello world"
+   
+
+
