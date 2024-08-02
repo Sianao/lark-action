@@ -49,7 +49,7 @@ module.exports = {
 };
 
 
-const template= JSON.parse(`
+const template=
     {
         "name":"Github action",
         "dsl":{
@@ -251,8 +251,7 @@ const template= JSON.parse(`
         "variables":[
            
         ]
-     }
-`)
+    };
 
 /***/ }),
 
