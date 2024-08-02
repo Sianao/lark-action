@@ -15,8 +15,8 @@ async function run() {
     const env = new Env();
     const Header =new Headers();
     var card=template
-    card.elements[0].columns[0].elements[0].content="触发者："+ env.get("ACTOR")
-    card.elements[0].columns[1].elements[0].content="触发事件："+ env.get("github.event_name")
+    card.elements[0].columns[0].elements[0].content="触发者："+ env.get("GITHUB_ACTOR")
+    card.elements[0].columns[1].elements[0].content="触发事件："+ env.get("GITHUB_EVENT_NAME")
     card.elements[2].content="😍 CI runner ：\n "+ env.get("ACTOR")
 
     Header.append("Content-Type","application/json")
