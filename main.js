@@ -9,7 +9,7 @@ async function run() {
     const env = new Env();
     const Header =new Headers();
     var card=template
-    card.card.elements[0].elements[0].content="触发者："+env.get("github.event_name")
+    card.card.elements[0].columns[0].elements[0].content="触发者："+env.get("github.event_name")
     Header.append("Content-Type","application/json")
         const raw = JSON.stringify({
         "msg_type": "interactive",
