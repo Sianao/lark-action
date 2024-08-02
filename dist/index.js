@@ -13,6 +13,7 @@ const { Env } = __nccwpck_require__(441);
 async function run() {
   try {
     const Header =new Headers();
+    Header.append("Content-Type","application/json")
     const raw =JSON.stringify({
         "msg_type":"text",
         "context":{
