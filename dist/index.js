@@ -25,9 +25,13 @@ async function run() {
         body:raw,
     }
     const env = new Env();
-    let hook=env.get("LARK_WEBHOOK")
-    fetch(hook,reqOption)
-    const state = core.getInput("state", { required: true });
+    let =env.get("LARK_WEBHOOK")
+    fetch(hook,
+         requestOptions)
+         .then((response) => response.text())   
+         .then((result) => console.log(result))   
+         .catch((error) => console.error(error));
+
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message);
