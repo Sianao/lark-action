@@ -14,26 +14,32 @@ async function run() {
   try {
     const Header =new Headers();
     Header.append("Content-Type","application/json")
-    const raw =JSON.stringify({
-        "msg_type":"text",
-        "context":{
-            "text":"新更新提醒"
+        const raw = JSON.stringify({
+        "msg_type": "text",
+        "content": {
+            "text": "新更新提醒"
         }
-    })
+        });
+
+const requestOptions = {
+  method: "POST",
+  headers: Header,
+  body: raw,
+  redirect: "follow"
+};
+
+const env = new Env();
+let hook =env.get("LARK_WEBHOOK")
+
+  fetch(hook, requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
     const reqOption={
         method:"POST",
         head:Header,
         body:raw,
     }
-    const env = new Env();
-    let hook =env.get("LARK_WEBHOOK")
-    console.log(hook)
-    fetch(hook,
-        reqOption)
-         .then((response) => response.text())   
-         .then((result) => console.log(result))   
-         .catch((error) => console.error(error));
-
   } catch (error) {
     // Fail the workflow run if an error occurs
     core.setFailed(error.message);
