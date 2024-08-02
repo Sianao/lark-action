@@ -10,5 +10,5 @@ inputs:
 
 # Define your outputs here.
 runs:
-  using: node20
-  main: dist/index.js
+  using: 'node20'
+  main: 'index.js'
