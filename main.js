@@ -18,7 +18,8 @@ async function run() {
         head:Header,
         body:raw,
     }
-    let hook=Env.get("LARK_WEBHOOK")
+    const env = new Env();
+    let hook=env.get("LARK_WEBHOOK")
     fetch(hook,reqOption)
     const state = core.getInput("state", { required: true });
   } catch (error) {
