@@ -14,6 +14,7 @@ jobs:
         uses: ./
         env:
             LARK_WEBHOOK: ${{ secrets.LARK_WEBHOOK}} 
+            ACTOR: ${{github.actor}}
         with:
           state: "hello world"
    

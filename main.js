@@ -9,11 +9,14 @@ async function run() {
     const env = new Env();
     const Header =new Headers();
     var card=template
-    card.card.elements[0].columns[0].elements[0].content="触发者："+env.get("github.event_name")
+    card.elements[0].columns[0].elements[0].content="触发者："+ env.get("ACTOR")
+    card.elements[0].columns[1].elements[0].content="触发事件："+ env.get("github.event_name")
+    card.elements[2].content="😍 CI runner ：\n "+ env.get("ACTOR")
+
     Header.append("Content-Type","application/json")
         const raw = JSON.stringify({
         "msg_type": "interactive",
-        "card": template
+        "card": card
         });
 
 const requestOptions = {
@@ -26,7 +29,7 @@ const requestOptions = {
 
 let hook =env.get("LARK_WEBHOOK")
 
-  fetch(hook, requestOptions)
+  fetch("https://open.feishu.cn/open-apis/bot/v2/hook/905268a3-837b-4414-a768-c1160f9d944e", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -46,9 +49,7 @@ module.exports = {
 };
 
 const template=
-    {
-        "msg_type": "interactive",
-        "card": {
+{
             "elements": [
                 {
                     "tag": "column_set",
@@ -74,45 +75,6 @@ const template=
                                         "token": "assigned_outlined"
                                     }
                                 },
-                                {
-                                    "tag": "column_set",
-                                    "flex_mode": "none",
-                                    "background_style": "default",
-                                    "horizontal_spacing": "8px",
-                                    "horizontal_align": "left",
-                                    "columns": [
-                                        {
-                                            "tag": "column",
-                                            "width": "18px",
-                                            "vertical_align": "top",
-                                            "vertical_spacing": "8px",
-                                            "background_style": "default",
-                                            "elements": []
-                                        },
-                                        {
-                                            "tag": "column",
-                                            "width": "weighted",
-                                            "vertical_align": "top",
-                                            "vertical_spacing": "8px",
-                                            "background_style": "default",
-                                            "elements": [
-                                                {
-                                                    "tag": "person_list",
-                                                    "persons": [
-                                                        {
-                                                            "id": "39af6166"
-                                                        }
-                                                    ],
-                                                    "size": "small",
-                                                    "show_avatar": true,
-                                                    "show_name": true
-                                                }
-                                            ],
-                                            "weight": 1
-                                        }
-                                    ],
-                                    "margin": "0px 0px 0px 0px"
-                                }
                             ],
                             "weight": 1
                         },
@@ -215,4 +177,5 @@ const template=
                 }
             }
         }
-    }
+    
+
