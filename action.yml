@@ -1,0 +1,14 @@
+name: "Lark action"
+description: "飞书webhook通知机器人"
+author: "sianao"
+
+# Define your inputs here.
+inputs:
+  state:
+    description: "ci state"
+    required: true
+
+# Define your outputs here.
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
